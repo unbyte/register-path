@@ -1,1 +1,1 @@
-./packages/add-path/README.md
+packages/register-path/README.md
