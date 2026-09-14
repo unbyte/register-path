@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: pnpm
+      - name: Install Linux shells
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bash zsh fish dash
+      - name: Install macOS shells
+        if: runner.os == 'macOS'
+        run: brew install fish dash
+      - name: Verify Unix shells
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          for shell in bash zsh fish dash sh; do
+            command -v "$shell"
+          done
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
