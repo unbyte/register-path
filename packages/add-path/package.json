@@ -7,6 +7,15 @@
   "files": [
     "lib"
   ],
+  "homepage": "https://github.com/unbyte/add-path#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unbyte/add-path.git",
+    "directory": "packages/add-path"
+  },
+  "bugs": {
+    "url": "https://github.com/unbyte/add-path/issues"
+  },
   "author": {
     "name": "unbyte",
     "url": "https://github.com/unbyte"
