@@ -1,6 +1,7 @@
 {
   "name": "add-path",
   "version": "0.0.1",
+  "description": "Persist a directory in the current user's PATH across Unix shells and Windows.",
   "type": "module",
   "main": "src/index.ts",
   "files": [
@@ -11,7 +12,16 @@
     "url": "https://github.com/unbyte"
   },
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "path",
+    "environment",
+    "shell",
+    "windows",
+    "installer"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "tsup",
     "prepublishOnly": "turbo run build"
@@ -23,9 +33,14 @@
     "types": "lib/index.d.ts",
     "exports": {
       ".": {
-        "types": "./lib/index.d.ts",
-        "import": "./lib/index.js",
-        "require": "./lib/index.cjs"
+        "import": {
+          "types": "./lib/index.d.ts",
+          "default": "./lib/index.js"
+        },
+        "require": {
+          "types": "./lib/index.d.cts",
+          "default": "./lib/index.cjs"
+        }
       }
     }
   }

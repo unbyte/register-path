@@ -1,3 +1,3 @@
-export function hello() {
-  return 'Hello, world!'
-}
+export { addPath } from './add-path'
+export { AddPathError } from './error'
+export type * from './types'
